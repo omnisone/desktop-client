@@ -1,0 +1,17 @@
+.search-input {
+    outline: none;
+    font-size: 14px;
+    border: 0 solid transparent;
+}
+
+.search-shadow {
+    box-shadow: 0 0.2rem 1rem rgba( #000, .1 ) !important;
+}
+
+mat-card.hover-shadow {
+    box-shadow: none !important;
+
+    &:hover {
+        @extend .search-shadow;
+    }
+}
