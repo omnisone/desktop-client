@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
+
+/* Models */
+import { Song } from '../../models/song'
 
 @Component({
   selector: 'app-songs',
@@ -10,6 +13,9 @@ export class SongsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    for(let i = 0; i < 10; i++) {
+      console.log(Song.randomSong())
+    }
   }
 
 }
