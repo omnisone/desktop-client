@@ -11,7 +11,8 @@ function createWindow() {
     win = new BrowserWindow({
         width: 1500,
         height: 800,
-        titleBarStyle: 'hiddenInset'
+        // titleBarStyle: 'hiddenInset',
+        vibrancy: 'medium-light'
     })
 
     // and load the index.html of the app.
