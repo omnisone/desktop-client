@@ -1,0 +1,23 @@
+.mat-cell {
+    font-size: 12px;
+}
+
+.mat-row {
+    height: 30px;
+
+    &:nth-child(odd) {
+        background-color: #EEEEEE;
+    }
+}
+
+.mat-header-cell, .mat-cell {
+    border-bottom: none;
+}
+
+.mat-column-songArtist {
+    max-width: 150px;
+    text-overflow: ellipsis;
+    /* Required for text-overflow to do anything */
+    white-space: nowrap;
+    overflow: hidden;
+}
