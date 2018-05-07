@@ -25,5 +25,6 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="['songName', 'songDuration', 'songArtist', 'songAlbum', 'songGenre']"></tr>
-  <tr mat-row *matRowDef="let row; columns: ['songName', 'songDuration', 'songArtist', 'songAlbum', 'songGenre']"></tr>
+  <tr mat-row (click)="selectSong(row)" (dblclick)="playSong(row)" [ngClass]="{'selected-row': selectedSongs.indexOf(row) > -1}"
+    *matRowDef="let row; columns: ['songName', 'songDuration', 'songArtist', 'songAlbum', 'songGenre']"></tr>
 </table>

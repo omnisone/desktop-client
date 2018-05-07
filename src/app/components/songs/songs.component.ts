@@ -11,6 +11,7 @@ import { Song } from '../../models/song'
 export class SongsComponent implements OnInit {
 
   public allSongs: Song[] = []
+  public selectedSongs: Song[] = []
 
   constructor() { }
 
@@ -33,11 +34,23 @@ export class SongsComponent implements OnInit {
 
     seconds = (seconds < 10) ? "0" + seconds : seconds;
 
-    if(Number(hours) === 0) {
+    if (Number(hours) === 0) {
       return minutes + ":" + seconds
     } else {
       return hours + ":" + minutes + ":" + seconds
     }
+  }
+  
+  public selectSong(song: Song) {
+    this.selectedSongs = [ song ]
+  }
+
+  public playSong(song: Song) {
+    console.log('Playing:', song.name)
+  }
+
+  public print(...args) {
+    console.log(args)
   }
 
 }
