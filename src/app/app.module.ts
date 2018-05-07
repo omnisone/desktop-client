@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 /* Angular Material */
 import { 
   MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatInputModule,
-  MatCardModule, MatListModule
+  MatCardModule, MatListModule, MatTableModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -30,7 +30,7 @@ import { SongsComponent } from './components/songs/songs.component';
     NgxElectronModule,
     FormsModule,
     MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatInputModule,
-    MatCardModule, MatListModule
+    MatCardModule, MatListModule, MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

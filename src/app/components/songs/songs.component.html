@@ -1,3 +1,14 @@
-<p>
-  songs works!
-</p>
+<table mat-table [dataSource]="allSongs" class="w-100">
+  <ng-container matColumnDef="songName">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let song"> {{song.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="songDuration">
+    <th mat-header-cell *matHeaderCellDef> Time </th>
+    <td mat-cell *matCellDef="let song"> {{parseTime(song.duration)}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="['songName', 'songDuration']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['songName', 'songDuration']"></tr>
+</table>
