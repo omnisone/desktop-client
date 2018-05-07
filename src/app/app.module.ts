@@ -7,18 +7,22 @@ import { FormsModule } from '@angular/forms';
 /* Angular Material */
 import { 
   MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatInputModule,
-  MatCardModule 
+  MatCardModule, MatListModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { PlayerControlsComponent } from './components/player-controls/player-controls.component';
 import { SearchBarComponent } from './components/player-controls/search-bar/search-bar.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { SongsComponent } from './components/songs/songs.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerControlsComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    SidenavComponent,
+    SongsComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,7 @@ import { SearchBarComponent } from './components/player-controls/search-bar/sear
     NgxElectronModule,
     FormsModule,
     MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatInputModule,
-    MatCardModule
+    MatCardModule, MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

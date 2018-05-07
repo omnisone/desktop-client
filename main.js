@@ -38,6 +38,11 @@ function createWindow() {
         console.log('Refreshing...')
         win.reload()
     })
+
+    // Open dev tools
+    globalShortcut.register('CommandOrControl+Shift+I', function () {
+        win.webContents.openDevTools()
+    })
 }
 
 // This method will be called when Electron has finished
