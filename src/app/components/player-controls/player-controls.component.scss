@@ -3,5 +3,13 @@
 }
 
 .spacer-sm {
-    flex: 0.1 1 auto;
+    flex: 0.25 1 auto;
+}
+
+button {
+    -webkit-app-region: no-drag;
+    
+    &mat-icon {
+        cursor: pointer;
+    }
 }
