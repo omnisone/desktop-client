@@ -18,6 +18,7 @@ import { SearchBarComponent } from './components/player-controls/search-bar/sear
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { SongsComponent } from './components/songs/songs.component';
 import { TrackInfoComponent } from './components/player-controls/track-info/track-info.component';
+import { WindowControlsComponent } from './components/window-controls/window-controls.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TrackInfoComponent } from './components/player-controls/track-info/trac
     SearchBarComponent,
     SidenavComponent,
     SongsComponent,
-    TrackInfoComponent
+    TrackInfoComponent,
+    WindowControlsComponent
   ],
   imports: [
     BrowserModule,
