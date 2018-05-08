@@ -1,5 +1,19 @@
-<div class="controls-container">
-  <button mat-icon-button class="window-button close-button">
-    <mat-icon>close</mat-icon>
-  </button>
+<div class="row controls-row m-0 p-0">
+  <div class="col m-0 p-0">
+    <div class="row m-0 p-0 pt-2">
+      <button mat-icon-button class="window-button close-button">
+        <mat-icon [style.opacity]="true?'1':'0'">close</mat-icon>
+      </button>
+    </div>
+    <div class="row m-0 p-0 pt-1">
+      <button mat-icon-button class="window-button minimize-button">
+        <mat-icon [style.opacity]="true?'1':'0'">remove</mat-icon>
+      </button>
+    </div>
+    <div class="row m-0 p-0 pt-1">
+      <button mat-icon-button class="window-button maximize-button">
+        <mat-icon [style.opacity]="true?'1':'0'">fullscreen</mat-icon>
+      </button>
+    </div>
+  </div>
 </div>

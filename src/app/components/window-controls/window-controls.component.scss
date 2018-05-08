@@ -1,25 +1,29 @@
-.controls-container {
+.controls-row {
     height: 64px;
-    width: 64px;
-    background-color: indianred;
 }
 
 .window-button {
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    color: rgba(#000000, 0.7);
     mat-icon {
-        line-height: 16px;
-        font-size: 16px;
-        height: 16px;
-        width: 16px;
+        line-height: 10px;
+        font-size: 10px;
+        height: 10px;
+        width: 10px;
         margin-bottom: 2px;
     }
 }
 
 .close-button {
-    position: absolute;
-    left: 39px;
-    top: 10px;
     background-color: #f44336;
+}
+
+.minimize-button {
+    background-color: #FFC107;
+}
+
+.maximize-button {
+    background-color: #4CAF50;
 }
