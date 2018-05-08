@@ -1,30 +1,32 @@
-<table mat-table [dataSource]="allSongs" class="w-100">
-  <ng-container matColumnDef="songName">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let song"> {{song.name}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="songDuration">
-    <th mat-header-cell *matHeaderCellDef> Time </th>
-    <td mat-cell *matCellDef="let song"> {{parseTime(song.duration)}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="songArtist">
-    <th mat-header-cell *matHeaderCellDef> Artist </th>
-    <td mat-cell *matCellDef="let song"> {{song.artist.name}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="songAlbum">
-    <th mat-header-cell *matHeaderCellDef> Album </th>
-    <td mat-cell *matCellDef="let song"> {{song.album.name}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="songGenre">
-    <th mat-header-cell *matHeaderCellDef> Genre </th>
-    <td mat-cell *matCellDef="let song"> {{song.genre}} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="['songName', 'songDuration', 'songArtist', 'songAlbum', 'songGenre']"></tr>
-  <tr mat-row (click)="selectSong(row)" (dblclick)="playSong(row)" [ngClass]="{'selected-row': selectedSongs.indexOf(row) > -1}"
-    *matRowDef="let row; columns: ['songName', 'songDuration', 'songArtist', 'songAlbum', 'songGenre']"></tr>
-</table>
+<div class="song-table-container">
+  <table mat-table matSort #table [dataSource]="dataSource" class="w-100">
+    <ng-container matColumnDef="songName">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let song"> {{song.name}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="songDuration">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Time </th>
+      <td mat-cell *matCellDef="let song"> {{parseTime(song.duration)}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="songArtist">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Artist </th>
+      <td mat-cell *matCellDef="let song"> {{song.artist.name}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="songAlbum">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Album </th>
+      <td mat-cell *matCellDef="let song"> {{song.album.name}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="songGenre">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Genre </th>
+      <td mat-cell *matCellDef="let song"> {{song.genre}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row (click)="selectSong(row)" (dblclick)="playSong(row)" [ngClass]="{'selected-row': selectedSongs.indexOf(row) > -1}"
+      *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

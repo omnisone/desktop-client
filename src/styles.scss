@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 .my-auto {
     margin-top: 0 auto !important;
     margin-bottom: 0 auto !important;
@@ -17,4 +17,8 @@ html {
 
 .white-tr-text {
     color: rgba(#EEEEEE, 0.8) !important;
+}
+
+button:focus {
+    outline: 0;
 }
