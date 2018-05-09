@@ -27,7 +27,9 @@
               "node_modules/dragula/dist/dragula.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/webtorrent/webtorrent.min.js"
+            ]
           },
           "configurations": {
             "production": {

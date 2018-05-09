@@ -1,18 +1,18 @@
-<div class="row controls-row m-0 p-0">
+<div class="row controls-row m-0 p-0 pr-2" (mouseenter)="showControls=true" (mouseleave)="showControls=false">
   <div class="col m-0 p-0">
     <div class="row m-0 p-0 pt-2">
       <button mat-icon-button class="window-button close-button">
-        <mat-icon [style.opacity]="true?'1':'0'">close</mat-icon>
+        <mat-icon [style.opacity]="showControls?'1':'0'">close</mat-icon>
       </button>
     </div>
     <div class="row m-0 p-0 pt-1">
       <button mat-icon-button class="window-button minimize-button">
-        <mat-icon [style.opacity]="true?'1':'0'">remove</mat-icon>
+        <mat-icon [style.opacity]="showControls?'1':'0'">remove</mat-icon>
       </button>
     </div>
     <div class="row m-0 p-0 pt-1">
       <button mat-icon-button class="window-button maximize-button">
-        <mat-icon [style.opacity]="true?'1':'0'">fullscreen</mat-icon>
+        <mat-icon [style.opacity]="showControls?'1':'0'">fullscreen</mat-icon>
       </button>
     </div>
   </div>

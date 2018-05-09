@@ -4,6 +4,9 @@ import { MatSort, MatTableDataSource } from '@angular/material';
 /* Models */
 import { Song } from '../../models/song'
 
+/* Services */
+import { PlayerService } from '../../services/player/player.service';
+
 @Component({
   selector: 'app-songs',
   templateUrl: './songs.component.html',
@@ -19,7 +22,7 @@ export class SongsComponent implements OnInit {
   public displayedColumns: string[] = ['songName', 'songDuration', 'songArtist', 'songAlbum', 'songGenre']
   public dataSource: MatTableDataSource<Song>
 
-  constructor() {
+  constructor(private _playerService: PlayerService) {
     for (let i = 0; i < 100; i++) {
       let song: any = Song.randomSong()
       song.position = i + 1
@@ -64,7 +67,7 @@ export class SongsComponent implements OnInit {
   }
 
   public playSong(song: Song) {
-    console.log('Playing:', song.name)
+    console.log('Playing:', song)
   }
 
   public print(...args) {

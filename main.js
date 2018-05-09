@@ -1,7 +1,6 @@
 const { app, BrowserWindow, globalShortcut } = require('electron')
 const path = require('path')
 const url = require('url')
-require('electron-drag-drop')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -12,7 +11,8 @@ function createWindow() {
     win = new BrowserWindow({
         width: 1500,
         height: 800,
-        // titleBarStyle: 'hiddenInset',
+        frame: false,
+        titleBarStyle: 'hiddenInset',
         vibrancy: 'medium-light'
     })
 
