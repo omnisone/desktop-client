@@ -5,7 +5,7 @@
     </div>
   </div>
 
-  <div class="col p-0 m-0 info-col">
+  <div class="col p-0 m-0 info-col" *ngIf="currentSong">
 
     <div class="row p-0 m-0 mt-2 title-row">
       <div class="col-3 p-0 m-0 pl-2 text-left">
@@ -13,7 +13,7 @@
           <mat-icon>shuffle</mat-icon>
         </button>
       </div>
-      <div class="col-6 p-0 m-0 text-center">Name</div>
+      <div class="col-6 p-0 m-0 text-center">{{currentSong.name}}</div>
       <div class="col-3 p-0 m-0 pr-2 text-right">
         <button class="icon-btn-sm" mat-icon-button>
           <mat-icon>repeat</mat-icon>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="row m-0 p-0 slider-row">
-      <mat-slider class="time-slider" min="1" max="5" value="3.5"></mat-slider>
+      <mat-slider class="time-slider" min="0" max="18" [value]="playerTime"></mat-slider>
     </div>
   </div>
 </div>

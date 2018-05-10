@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 /* Models */
 import { Song } from '../../models/song'
+import { BehaviorSubject, Observable } from 'rxjs';
 
 declare var WebTorrent: any
 
@@ -11,12 +12,16 @@ declare var WebTorrent: any
 export class PlayerService {
 
   /* Audio */
-  private audio: HTMLAudioElement = null
+  public audio: HTMLAudioElement = null
   private audioUrlMap: Map<string, string> = new Map()
   public playing: boolean
 
+  private songSource: BehaviorSubject<Song> = new BehaviorSubject<Song>(null)
+  public currentSong: Observable<Song> = this.songSource.asObservable()
+
   /* Callbacks */
   private _updateTrackInfo: Function
+  private _timeUpdate: Function
 
   /* WebTorrent */
   private trackers = ['udp://localhost:3303']
@@ -27,6 +32,7 @@ export class PlayerService {
     this.playing = false
 
     this._updateTrackInfo = () => {}
+    this._timeUpdate = () => {}
   }
 
   public loadTrack(track: Song, callback?: Function) {
@@ -96,16 +102,30 @@ export class PlayerService {
     }
   }
 
+  public onTimeUpdate(callback: Function) {
+    if(callback) {
+      this._timeUpdate = callback
+    }
+  }
+
   private renderTrack(track: Song, url: string, callback?: Function) {
+    const self: PlayerService = this
+
     if (this.audio) {
       this.audio.pause()
     }
 
     this._updateTrackInfo(track)
+    this.songSource.next(track)
 
     this.audioUrlMap.set(track.id, url)
     this.audio = new Audio()
     this.audio.src = url
+    this.audio.ontimeupdate = () => self._timeUpdate(self.audio.currentTime)
+    this.audio.onended = () => {
+      self.songSource.next(null)
+      self.audio = null
+    }
     this.play()
 
     if (callback) {
