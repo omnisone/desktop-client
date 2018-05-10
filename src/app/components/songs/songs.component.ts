@@ -68,7 +68,9 @@ export class SongsComponent implements OnInit {
 
   public playSong(song: Song) {
     console.log('Playing:', song)
-    this._playerService.test()
+    this._playerService.loadTrack(song, () => {
+      console.log('loaded track')
+    })
   }
 
   public print(...args) {

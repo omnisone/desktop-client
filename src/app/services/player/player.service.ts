@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 
+/* Models */
+import { Song } from '../../models/song'
+
 declare var WebTorrent: any
 
 @Injectable({
@@ -7,11 +10,68 @@ declare var WebTorrent: any
 })
 export class PlayerService {
 
+  /* Audio */
+  private audio: HTMLAudioElement = null
+  private audioUrlMap: Map<string, string> = new Map()
+
+  /* WebTorrent */
   private trackers = ['udp://localhost:3303']
   private torrentClient: any
 
   constructor() {
     this.torrentClient = new WebTorrent({ dht: false })
+  }
+
+  public loadTrack(track: Song, callback?: Function) {
+    if (this.audioUrlMap.has(track.id)) {
+      this.renderTrack(track, this.audioUrlMap.get(track.id), callback)
+      return
+    }
+
+    const self = this
+    this.torrentClient.add(track.magnet, { announceList: [this.trackers] }, function (torrent) {
+      const file = torrent.files.find(function (file) {
+        return file.name.endsWith('.mp3')
+      })
+
+      file.getBlobURL(function (err, url) {
+        if (err) throw err
+        self.renderTrack(track, url, callback)
+      })
+    })
+  }
+
+  private renderTrack(track: Song, url: string, callback?: Function) {
+    if (this.audio) {
+      this.audio.pause()
+    }
+
+    this.audioUrlMap.set(track.id, url)
+    this.audio = new Audio()
+    this.audio.src = url
+    this.audio.play()
+
+    if (callback) {
+      callback()
+    }
+  }
+
+  public play() {
+    if (!this.audio) {
+      console.warn('audio is null')
+      return
+    }
+
+    this.audio.play()
+  }
+
+  public pause() {
+    if (!this.audio) {
+      console.warn('audio is null')
+      return
+    }
+
+    this.audio.pause()
   }
 
   public test() {
@@ -37,25 +97,23 @@ export class PlayerService {
         return file.name.endsWith('.mp3')
       })
 
+      file.getBlobURL(function (err, url) {
+        if (err) throw err
+        let audio = new Audio()
+        audio.src = url
+        audio.play()
+      })
+
       // Display the file by adding it to the DOM.
       // Supports video, audio, image files, and more!
-      file.appendTo('body')
+      // let audio = document.createElement('audio')
+      // document.body.appendChild(audio)
+
+      // Stream the video into the video tag
+      // file.createReadStream().pipe(audio)
+
+      // file.appendTo('body')
 
     })
-
-
-    // this.torrentClient.add(torrentId, { announceList: [this.trackers] }, function (torrent) {
-    //   console.log('Client is downloading:', torrent.infoHash)
-
-    //   // Torrents can contain many files. Let's use the .mp4 file
-    //   var file = torrent.files.find(function (file) {
-    //     return file.name.endsWith('.mp3')
-    //   })
-
-    //   // Display the file by adding it to the DOM.
-    //   // Supports video, audio, image files, and more!
-    //   file.appendTo('body')
-    //   console.log('appended')
-    // })
   }
 }
