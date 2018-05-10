@@ -15,6 +15,9 @@ export class PlayerService {
   private audioUrlMap: Map<string, string> = new Map()
   public playing: boolean
 
+  /* Callbacks */
+  private _updateTrackInfo: Function
+
   /* WebTorrent */
   private trackers = ['udp://localhost:3303']
   private torrentClient: any
@@ -22,6 +25,8 @@ export class PlayerService {
   constructor() {
     this.torrentClient = new WebTorrent({ dht: false })
     this.playing = false
+
+    this._updateTrackInfo = () => {}
   }
 
   public loadTrack(track: Song, callback?: Function) {
@@ -69,7 +74,6 @@ export class PlayerService {
 
   public play() {
     if (!this.audio) {
-      console.warn('audio is null')
       return
     }
 
@@ -79,7 +83,6 @@ export class PlayerService {
 
   public pause() {
     if (!this.audio) {
-      console.warn('audio is null')
       return
     }
 
@@ -87,15 +90,23 @@ export class PlayerService {
     this.playing = false
   }
 
+  public onTrackInfo(callback: Function) {
+    if(callback) {
+      this._updateTrackInfo = callback
+    }
+  }
+
   private renderTrack(track: Song, url: string, callback?: Function) {
     if (this.audio) {
       this.audio.pause()
     }
 
+    this._updateTrackInfo(track)
+
     this.audioUrlMap.set(track.id, url)
     this.audio = new Audio()
     this.audio.src = url
-    this.audio.play()
+    this.play()
 
     if (callback) {
       callback()
