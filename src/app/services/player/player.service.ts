@@ -13,6 +13,7 @@ export class PlayerService {
   /* Audio */
   private audio: HTMLAudioElement = null
   private audioUrlMap: Map<string, string> = new Map()
+  public playing: boolean
 
   /* WebTorrent */
   private trackers = ['udp://localhost:3303']
@@ -20,9 +21,12 @@ export class PlayerService {
 
   constructor() {
     this.torrentClient = new WebTorrent({ dht: false })
+    this.playing = false
   }
 
   public loadTrack(track: Song, callback?: Function) {
+    this.pause()
+
     if (this.audioUrlMap.has(track.id)) {
       this.renderTrack(track, this.audioUrlMap.get(track.id), callback)
       return
@@ -41,6 +45,28 @@ export class PlayerService {
     })
   }
 
+  public preloadTrack(track: Song, callback?: Function) {
+    if (this.audioUrlMap.has(track.id)) {
+      return
+    }
+
+    const self = this
+    this.torrentClient.add(track.magnet, { announceList: [this.trackers] }, function (torrent) {
+      const file = torrent.files.find(function (file) {
+        return file.name.endsWith('.mp3')
+      })
+
+      file.getBlobURL(function (err, url) {
+        if (err) throw err
+        self.audioUrlMap.set(track.id, url)
+
+        if (callback) {
+          callback()
+        }
+      })
+    })
+  }
+
   public play() {
     if (!this.audio) {
       console.warn('audio is null')
@@ -48,6 +74,7 @@ export class PlayerService {
     }
 
     this.audio.play()
+    this.playing = true
   }
 
   public pause() {
@@ -57,6 +84,7 @@ export class PlayerService {
     }
 
     this.audio.pause()
+    this.playing = false
   }
 
   private renderTrack(track: Song, url: string, callback?: Function) {
