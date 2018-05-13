@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { NgxElectronModule } from 'ngx-electron';
 import { FormsModule } from '@angular/forms';
 import { DragulaModule } from 'ng2-dragula';
+import { RoutingModule } from './routing/routing.module'
 
 /* Angular Material */
 import { 
@@ -20,6 +21,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { SongsComponent } from './components/songs/songs.component';
 import { TrackInfoComponent } from './components/player-controls/track-info/track-info.component';
 import { WindowControlsComponent } from './components/window-controls/window-controls.component';
+import { ReleaseComponent } from './components/release/release.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { WindowControlsComponent } from './components/window-controls/window-con
     SidenavComponent,
     SongsComponent,
     TrackInfoComponent,
-    WindowControlsComponent
+    WindowControlsComponent,
+    ReleaseComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { WindowControlsComponent } from './components/window-controls/window-con
     NgxElectronModule,
     FormsModule,
     DragulaModule,
+    RoutingModule,
     HttpClientModule,
     MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatInputModule,
     MatCardModule, MatListModule, MatTableModule, MatSortModule, MatSliderModule
