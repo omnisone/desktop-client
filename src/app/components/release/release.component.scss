@@ -5,3 +5,21 @@
 .bg-dark {
 	background-color: #263238;
 }
+
+.bg-blue {
+	background-color: #1976D2;
+}
+
+.bg-purple {
+	background-color: #7E57C2;
+}
+
+.dark-text {
+	color: #263238 !important;
+}
+
+.release-item-row {
+	@extend .bg-purple;
+	border-radius: 0.2em;
+	box-shadow: 0 1rem 4rem rgba( #000, .22 );
+}

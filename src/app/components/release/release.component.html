@@ -1,22 +1,35 @@
 <div class="row upload-row pt-2 pb-2 m-0">
-  <div class="col m-0 text-right">
+  <div class="col m-0 text-left">
     <button mat-button color="primary" class="white-tr-text bg-dark" (click)="openUploadDialog()">
+      <mat-icon>audiotrack</mat-icon>
+      <span class="ml-1">Select Songs</span>
+    </button>
+  </div>
+  <div class="col m-0 text-right">
+    <button mat-button color="primary" class="white-tr-text bg-purple" *ngIf="releaseFiles.length">
       <mat-icon>file_upload</mat-icon>
-      <span>Upload</span>
+      <span>Release</span>
     </button>
   </div>
 </div>
 
-<div class="row m-0">
-  <div class="col m-0">
-    <mat-list>
-      <mat-list-item *ngFor="let releaseFile of releaseFiles">
-        <mat-icon matListIcon>folder</mat-icon>
-        <h3 matLine> {{releaseFile.name}} </h3>
-        <p matLine>
-          <span> Location: {{releaseFile.fileUrl}} </span>
-        </p>
-      </mat-list-item>
-    </mat-list>
+<div class="row mt-2 m-0 p-3" *ngFor="let releaseFile of releaseFiles">
+  <div class="col release-item-row pb-4 m-0">
+    <div class="row m-0">
+      <div class="col-2 d-flex" style="max-width: 40px">
+        <mat-icon matListIcon class="white-tr-text" style="margin-top: auto; margin-bottom: auto">audiotrack</mat-icon>
+      </div>
+      <div class="col m-0">
+        <div class="row m-0">
+          <mat-form-field class="w-100">
+            <input matInput [(ngModel)]="releaseFile.name" class="white-tr-text">
+          </mat-form-field>
+        </div>
+
+        <div class="row m-0">
+          <span class="white-tr-text" style="font-size: 12px"> Location: {{releaseFile.fileUrl}} </span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
