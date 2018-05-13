@@ -17,7 +17,7 @@ export class ReleaseComponent implements OnInit {
   ngOnInit() {
   }
 
-  public openUploadDialog() {
+  public openUploadDialog(): void {
     this._releaseService
       .openUploadDialog((fileData: ReleaseFile []) => {
         this._zone.run(() => {
@@ -35,6 +35,10 @@ export class ReleaseComponent implements OnInit {
           this.releaseFiles = this.releaseFiles.concat(uniqueFiles)
         })
       })
+  }
+
+  public deleteFile(index: number): void {
+    this.releaseFiles.splice(index, 1)
   }
 
 }

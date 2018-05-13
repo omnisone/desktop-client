@@ -26,4 +26,20 @@
 	@extend .bg-white;
 	border-radius: 0.2em;
 	box-shadow: 0 1rem 4rem rgba( #000, .22 );
+
+	&:hover {
+		.release-delete {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+}
+
+.release-delete {
+	transition: all 200ms ease-in-out;
+	transform: translateY(15px);
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	opacity: 0;
 }
