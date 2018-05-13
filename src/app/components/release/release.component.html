@@ -17,17 +17,40 @@
   <div class="col release-item-row pb-4 m-0">
     <div class="row m-0">
       <div class="col-2 d-flex" style="max-width: 40px">
-        <mat-icon matListIcon class="white-tr-text" style="margin-top: auto; margin-bottom: auto">audiotrack</mat-icon>
+        <mat-icon matListIcon style="margin-top: auto; margin-bottom: auto">audiotrack</mat-icon>
       </div>
       <div class="col m-0">
         <div class="row m-0">
           <mat-form-field class="w-100">
-            <input matInput [(ngModel)]="releaseFile.name" class="white-tr-text">
+            <input matInput [(ngModel)]="releaseFile.name">
           </mat-form-field>
         </div>
 
         <div class="row m-0">
-          <span class="white-tr-text" style="font-size: 12px"> Location: {{releaseFile.fileUrl}} </span>
+          <span style="font-size: 12px"> Location: {{releaseFile.fileUrl}} </span>
+        </div>
+
+        <div class="row m-0">
+          <div class="col m-0 p-0 d-flex bg-tr-whiter">
+            <span class="d-inline-block" style="margin-top: auto; margin-bottom: auto"> Price: </span>
+
+            <mat-form-field class="d-inline-block ml-4" style="margin-top: auto; margin-bottom: auto">
+              <span matPrefix>
+                <i class="fas fa-dollar-sign"></i>
+                &nbsp;&nbsp;
+              </span>
+              <input matInput>
+            </mat-form-field>
+
+            <mat-form-field class="d-inline-block ml-4" style="margin-top: auto; margin-bottom: auto">
+              <span matPrefix>
+                <i class="fab fa-ethereum"></i>
+                &nbsp;&nbsp;
+              </span>
+              <input matInput>
+            </mat-form-field>
+
+          </div>
         </div>
       </div>
     </div>
