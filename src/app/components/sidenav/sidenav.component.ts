@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+/* Services */
+import { ReleaseService } from '../../services/release/release.service';
+
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _releaseService: ReleaseService) { }
 
   ngOnInit() {
+  }
+
+  public releaseFiles() {
+    this._releaseService
+      .openUploadDialog((fileData: any []) => {
+        console.log(fileData)
+      })
   }
 
 }

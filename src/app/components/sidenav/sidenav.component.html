@@ -29,4 +29,18 @@
     <mat-icon mat-list-icon>history</mat-icon>
     <h4 mat-line>Transactions</h4>
   </a>
+
+  <mat-divider class="mt-2"></mat-divider>
+
+  <h3 mat-subheader class="white-tr-text">Releases</h3>
+  <a mat-list-item class="white-tr-text">
+    <mat-icon mat-list-icon>track_changes</mat-icon>
+    <h4 mat-line>My Tracks</h4>
+    <p mat-line>52 tracks</p>
+  </a>
+
+  <a mat-list-item class="white-tr-text" (click)="releaseFiles()">
+    <mat-icon mat-list-icon>publish</mat-icon>
+    <h4 mat-line>Release Tracks</h4>
+  </a>
 </mat-nav-list>

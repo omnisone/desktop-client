@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { NgxElectronModule } from 'ngx-electron';
 import { FormsModule } from '@angular/forms';
@@ -36,6 +37,7 @@ import { WindowControlsComponent } from './components/window-controls/window-con
     NgxElectronModule,
     FormsModule,
     DragulaModule,
+    HttpClientModule,
     MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatInputModule,
     MatCardModule, MatListModule, MatTableModule, MatSortModule, MatSliderModule
   ],
