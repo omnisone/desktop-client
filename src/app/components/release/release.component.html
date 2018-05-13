@@ -39,7 +39,7 @@
                 <i class="fas fa-dollar-sign"></i>
                 &nbsp;&nbsp;
               </span>
-              <input matInput>
+              <input matInput [(ngModel)]="releaseFile.priceUSD" (keydown)="USDToETH(releaseFile)">
             </mat-form-field>
 
             <mat-form-field class="d-inline-block ml-4" style="margin-top: auto; margin-bottom: auto">
@@ -47,7 +47,7 @@
                 <i class="fab fa-ethereum"></i>
                 &nbsp;&nbsp;
               </span>
-              <input matInput>
+              <input matInput [(ngModel)]="releaseFile.priceETH" (keydown)="ETHToUSD(releaseFile)">
             </mat-form-field>
           </div>
         </div>
