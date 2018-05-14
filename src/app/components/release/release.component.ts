@@ -1,12 +1,14 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { DomSanitizer, SafeResourceUrl, SafeUrl, SafeStyle } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 /* Models */
 import { Song, ReleaseFile } from '../../models/song'
 import { Genres } from '../../models/genres'
+import { Album } from '../../models/album'
 
 /* Services */
 import { ReleaseService } from '../../services/release/release.service'
@@ -18,6 +20,10 @@ import { ReleaseService } from '../../services/release/release.service'
 })
 export class ReleaseComponent implements OnInit {
 
+  /* Albums */
+  public albums: Album[] = []
+
+  /* Song releases */
   public releaseFiles: ReleaseFile[] = []
 
   private ETH_USD
@@ -28,7 +34,8 @@ export class ReleaseComponent implements OnInit {
 
   constructor(private _releaseService: ReleaseService,
     private _zone: NgZone,
-    private _http: HttpClient) { }
+    private _http: HttpClient,
+    private _sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this._http.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD')
@@ -41,6 +48,11 @@ export class ReleaseComponent implements OnInit {
         startWith(''),
         map(val => this.filterGenres(val))
       )
+  }
+
+  public createAlbum(): void {
+    let newAlbum = new Album()
+    this.albums.push(newAlbum)
   }
 
   public openUploadDialog(): void {
@@ -82,7 +94,7 @@ export class ReleaseComponent implements OnInit {
   }
 
   public parseSeconds(seconds: number): string {
-    if(!seconds) {
+    if (!seconds) {
       return "00:00"
     }
 
@@ -94,27 +106,25 @@ export class ReleaseComponent implements OnInit {
     let mm: string = mins.toString()
     let ss: string = sec.toString()
 
-    console.log(hh, mm, ss)
-
-    if(hh.length === 0 || !Number(hh)) {
+    if (hh.length === 0 || !hours) {
       hh = ""
     } else {
-      if(hh.length === 1) {
+      if (hh.length === 1) {
         hh = "0" + hh
       }
       hh += ":"
     }
 
-    if(mm.length === 0 || !Number(mm)) {
+    if (mm.length === 0 || !mins) {
       mm = "00:"
     } else {
-      if(mm.length === 1) {
+      if (mm.length === 1) {
         mm = "0" + mm
       }
       mm += ":"
     }
 
-    if(ss.length === 1) {
+    if (ss.length === 1) {
       ss = "0" + ss
     }
 

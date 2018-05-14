@@ -4,6 +4,11 @@
       <mat-icon>audiotrack</mat-icon>
       <span class="ml-1">Select Songs</span>
     </button>
+
+    <button mat-button color="primary" class="white-tr-text bg-dark ml-2" (click)="createAlbum()">
+      <mat-icon>album</mat-icon>
+      <span class="ml-1">New Album</span>
+    </button>
   </div>
   <div class="col m-0 text-right">
     <button mat-button color="primary" class="white-tr-text bg-purple" *ngIf="releaseFiles.length">
@@ -15,6 +20,55 @@
 
 <div class="row m-0 p-0">
   <div class="col m-0 p-0 item-container">
+
+    <!-- Albums -->
+    <div class="row mt-2 m-0 p-3" *ngFor="let album of albums; let i = index">
+      <div class="col release-item-row m-0">
+        <div class="row m-0 pt-2 pb-2">
+          <div class="col m-0 p-0 album-art-col">
+            <img [src]="album.artImage" alt="">
+          </div>
+
+          <div class="col m-0 p-0 pl-4">
+            <div class="row m-0 p-0">
+              <div class="col m-0 p-0">
+                <mat-form-field class="w-100">
+                  <span matPrefix>
+                    <mat-icon>album</mat-icon>
+                    &nbsp;&nbsp;
+                  </span>
+                  <input matInput placeholder="Name" [(ngModel)]="album.name">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row m-0 p-0">
+              <div class="col-4 m-0 p-0">
+                <mat-form-field class="d-inline-block" style="margin-top: auto; margin-bottom: auto">
+                  <span matPrefix>
+                    <mat-icon>calendar_today</mat-icon>
+                    &nbsp;&nbsp;
+                  </span>
+                  <input matInput placeholder="Year" [(ngModel)]="album.year">
+                </mat-form-field>
+              </div>
+
+              <div class="col-4 d-flex text-center m-0 p-0">
+                <mat-icon style="margin-top: auto; margin-bottom: auto">person</mat-icon>
+                <span class="d-inline-block" style="margin: auto; font-weight: bold"> Spatula of the Apocalypse </span>
+              </div>
+
+              <div class="col-4 d-flex text-right m-0 p-0">
+                <span class="d-inline-block" style="margin-left:auto; margin-top: auto; margin-bottom: auto"> 8 tracks </span>
+                <span class="d-inline-block ml-4" style="margin-top: auto; margin-bottom: auto"> 54:30 </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Song items -->
     <div class="row mt-2 m-0 p-3" *ngFor="let releaseFile of releaseFiles; let i = index">
       <div class="col release-item-row pb-4 m-0">
         <div class="row m-0">

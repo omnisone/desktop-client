@@ -48,3 +48,14 @@
 	right: 10px;
 	opacity: 0;
 }
+
+.album-art-col {
+	min-height: 150px;
+	max-height: 150px;
+	max-width: 150px;
+
+	img {
+		height: 100%;
+		width: 100%;
+	}
+}
