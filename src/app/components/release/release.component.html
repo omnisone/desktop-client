@@ -133,7 +133,8 @@
                     [matAutocomplete]="auto2">
                   <mat-autocomplete #auto2="matAutocomplete" [displayWith]="displayFn">
                     <mat-option *ngFor="let albumOption of filteredAlbums | async" [value]="albumOption">
-                      {{ albumOption.name }}
+                      <img style="vertical-align:middle;" aria-hidden src="{{albumOption.artImage}}" height="25" />
+                      <span class="ml-2"> {{ albumOption.name }} </span>
                     </mat-option>
                   </mat-autocomplete>
                 </mat-form-field>
