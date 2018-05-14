@@ -31,6 +31,8 @@ export class ReleaseComponent implements OnInit {
   /* Form Control */
   public genreControl: FormControl = new FormControl()
   public filteredGenres: Observable<string[]>
+  public albumControl: FormControl = new FormControl()
+  public filteredAlbums: Observable<Album[]>
 
   constructor(private _releaseService: ReleaseService,
     private _zone: NgZone,
@@ -47,6 +49,13 @@ export class ReleaseComponent implements OnInit {
       .pipe(
         startWith(''),
         map(val => this.filterGenres(val))
+      )
+
+    this.filteredAlbums = this.albumControl.valueChanges
+      .pipe(
+        startWith<string | Album>(''),
+        map(value => typeof value === 'string' ? value : value.name),
+        map(name => name ? this.filterAlbums(name) : this.albums.slice())
       )
   }
 
@@ -134,6 +143,15 @@ export class ReleaseComponent implements OnInit {
   private filterGenres(val: string): string[] {
     if (!val) return Genres
     return Genres.filter(option => option.toLowerCase().includes(val.toLowerCase()))
+  }
+
+  private filterAlbums(val: string): Album[] {
+    return this.albums.filter(option =>
+      option.name.toLowerCase().indexOf(val.toLowerCase()) === 0)
+  }
+
+  public displayFn(album?: Album): string | undefined {
+    return album ? album.name : undefined;
   }
 
 }

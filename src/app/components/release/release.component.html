@@ -115,7 +115,7 @@
             </div>
 
             <div class="row m-0">
-              <div class="col-6 m-0 pr-0">
+              <div class="col-6 m-0 pl-0 pr-2">
                 <mat-form-field class="w-100">
                   <input type="text" placeholder="Genre" aria-label="Number" matInput [(ngModel)]="releaseFile.genre" [formControl]="genreControl"
                     [matAutocomplete]="auto">
@@ -126,8 +126,17 @@
                   </mat-autocomplete>
                 </mat-form-field>
               </div>
-              <div class="col-6 m-0 pl-0">
 
+              <div class="col-6 m-0 pr-0 pl-2">
+                <mat-form-field class="w-100">
+                  <input type="text" placeholder="Album" aria-label="Number" matInput [(ngModel)]="releaseFile.album" [formControl]="albumControl"
+                    [matAutocomplete]="auto2">
+                  <mat-autocomplete #auto2="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option *ngFor="let albumOption of filteredAlbums | async" [value]="albumOption">
+                      {{ albumOption.name }}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
               </div>
             </div>
           </div>
