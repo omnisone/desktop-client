@@ -3,14 +3,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { NgxElectronModule } from 'ngx-electron';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DragulaModule } from 'ng2-dragula';
 import { RoutingModule } from './routing/routing.module'
 
 /* Angular Material */
 import { 
   MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatInputModule,
-  MatCardModule, MatListModule, MatTableModule, MatSortModule, MatSliderModule
+  MatCardModule, MatListModule, MatTableModule, MatSortModule, MatSliderModule,
+  MatAutocompleteModule
 } from '@angular/material';
 import 'hammerjs'
 
@@ -39,11 +40,13 @@ import { ReleaseComponent } from './components/release/release.component';
     BrowserAnimationsModule,
     NgxElectronModule,
     FormsModule,
+    ReactiveFormsModule,
     DragulaModule,
     RoutingModule,
     HttpClientModule,
     MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatInputModule,
-    MatCardModule, MatListModule, MatTableModule, MatSortModule, MatSliderModule
+    MatCardModule, MatListModule, MatTableModule, MatSortModule, MatSliderModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

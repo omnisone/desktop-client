@@ -1,4 +1,4 @@
-module.exports = [
+export const Genres: string [] = [
 	"2 tone",
 	"2-step garage",
 	"4-beat",
