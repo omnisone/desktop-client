@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 /* Models */
-import { Song } from '../../models/song'
+import { Song, ReleaseFile } from '../../models/song'
 import { Genres } from '../../models/genres'
 
 /* Services */
@@ -58,7 +58,10 @@ export class ReleaseComponent implements OnInit {
               if (releaseFile.fileUrl === file.fileUrl) unique = false
             })
 
-            if (unique) uniqueFiles.push(file)
+            if (unique) {
+              this._releaseService.getDuration(file)
+              uniqueFiles.push(file)
+            }
           })
 
           this.releaseFiles = this.releaseFiles.concat(uniqueFiles)
@@ -78,15 +81,49 @@ export class ReleaseComponent implements OnInit {
     releaseFile.priceUSD = Number((releaseFile.priceETH * this.ETH_USD).toFixed(6))
   }
 
+  public parseSeconds(seconds: number): string {
+    if(!seconds) {
+      return "00:00"
+    }
+
+    const hours: number = Math.floor(seconds / (60 ** 2))
+    const mins: number = Math.floor(seconds / 60)
+    const sec: number = Math.floor(seconds % 60)
+
+    let hh: string = hours.toString()
+    let mm: string = mins.toString()
+    let ss: string = sec.toString()
+
+    console.log(hh, mm, ss)
+
+    if(hh.length === 0 || !Number(hh)) {
+      hh = ""
+    } else {
+      if(hh.length === 1) {
+        hh = "0" + hh
+      }
+      hh += ":"
+    }
+
+    if(mm.length === 0 || !Number(mm)) {
+      mm = "00:"
+    } else {
+      if(mm.length === 1) {
+        mm = "0" + mm
+      }
+      mm += ":"
+    }
+
+    if(ss.length === 1) {
+      ss = "0" + ss
+    }
+
+    return hh + mm + ss
+  }
+
   private filterGenres(val: string): string[] {
-    if(!val) return Genres
+    if (!val) return Genres
     return Genres.filter(option => option.toLowerCase().includes(val.toLowerCase()))
   }
 
-}
-
-class ReleaseFile extends Song {
-  public fileUrl: string
-  public priceUSD?: number
-  public priceETH?: number
 }

@@ -23,19 +23,25 @@
           </div>
           <div class="col m-0">
             <div class="row m-0">
-              <mat-form-field class="w-100">
-                <input matInput [(ngModel)]="releaseFile.name">
-              </mat-form-field>
+              <div class="col p-0 m-0">
+                <mat-form-field class="w-100">
+                  <input matInput [(ngModel)]="releaseFile.name">
+                </mat-form-field>
+              </div>
+
+              <div class="col-2 text-right d-flex p-0 pr-2 m-0">
+                <span class="d-inline-block" style="margin-top: auto; margin-bottom: auto; margin-left: auto"> {{parseSeconds(releaseFile.duration)}} </span>
+              </div>
             </div>
-    
+
             <div class="row m-0">
               <span style="font-size: 12px"> Location: {{releaseFile.fileUrl}} </span>
             </div>
-    
+
             <div class="row m-0">
               <div class="col m-0 p-0 d-flex bg-tr-whiter">
                 <span class="d-inline-block" style="margin-top: auto; margin-bottom: auto"> Price: </span>
-    
+
                 <mat-form-field class="d-inline-block ml-4" style="margin-top: auto; margin-bottom: auto">
                   <span matPrefix>
                     <i class="fas fa-dollar-sign"></i>
@@ -43,7 +49,7 @@
                   </span>
                   <input matInput [(ngModel)]="releaseFile.priceUSD" (keydown)="USDToETH(releaseFile)">
                 </mat-form-field>
-    
+
                 <mat-form-field class="d-inline-block ml-4" style="margin-top: auto; margin-bottom: auto">
                   <span matPrefix>
                     <i class="fab fa-ethereum"></i>
@@ -53,11 +59,12 @@
                 </mat-form-field>
               </div>
             </div>
-    
+
             <div class="row m-0">
               <div class="col-6 m-0 pr-0">
                 <mat-form-field class="w-100">
-                  <input type="text" placeholder="Genre" aria-label="Number" matInput [(ngModel)]="releaseFile.genre" [formControl]="genreControl" [matAutocomplete]="auto">
+                  <input type="text" placeholder="Genre" aria-label="Number" matInput [(ngModel)]="releaseFile.genre" [formControl]="genreControl"
+                    [matAutocomplete]="auto">
                   <mat-autocomplete #auto="matAutocomplete">
                     <mat-option *ngFor="let option of filteredGenres | async" [value]="option">
                       {{ option }}
@@ -66,12 +73,12 @@
                 </mat-form-field>
               </div>
               <div class="col-6 m-0 pl-0">
-    
+
               </div>
             </div>
           </div>
         </div>
-    
+
         <button mat-icon-button class="release-delete" color="warn" (click)="deleteFile(i)">
           <mat-icon>delete</mat-icon>
         </button>

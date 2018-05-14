@@ -18,12 +18,18 @@ export class Song {
 
         let song = new Song()
         song.id = uuid4()
-        song.name = names[Math.floor(Math.random()*names.length)]
-        song.genre = genres[Math.floor(Math.random()*genres.length)]
+        song.name = names[Math.floor(Math.random() * names.length)]
+        song.genre = genres[Math.floor(Math.random() * genres.length)]
         song.album = Album.randomAlbum()
         song.artist = Artist.randomgArtist()
-        song.duration = Math.random() * (6*60*1000 - 2*60*1000) + 2*60*1000
+        song.duration = Math.random() * (6 * 60 * 1000 - 2 * 60 * 1000) + 2 * 60 * 1000
 
         return song
     }
+}
+
+export class ReleaseFile extends Song {
+    public fileUrl: string
+    public priceUSD?: number
+    public priceETH?: number
 }
