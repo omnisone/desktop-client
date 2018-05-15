@@ -12,6 +12,7 @@ import { Album } from '../../models/album'
 
 /* Services */
 import { ReleaseService } from '../../services/release/release.service'
+import { SeedService } from '../../services/seed/seed.service'
 
 @Component({
   selector: 'app-release',
@@ -35,6 +36,7 @@ export class ReleaseComponent implements OnInit {
   public filteredAlbums: Observable<Album[]>
 
   constructor(private _releaseService: ReleaseService,
+    private _seedService: SeedService,
     private _zone: NgZone,
     private _http: HttpClient,
     private _sanitizer: DomSanitizer) { }
@@ -92,6 +94,12 @@ export class ReleaseComponent implements OnInit {
 
   public deleteFile(index: number): void {
     this.releaseFiles.splice(index, 1)
+  }
+
+  public release(): void {
+    this.releaseFiles.forEach((song: ReleaseFile) => {
+      this._seedService.seedFile(song, (magnet: string) => console.log(magnet))
+    })
   }
 
   public USDToETH(releaseFile: ReleaseFile) {

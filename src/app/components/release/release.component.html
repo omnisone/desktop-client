@@ -11,7 +11,7 @@
     </button>
   </div>
   <div class="col m-0 text-right">
-    <button mat-button color="primary" class="white-tr-text bg-purple" *ngIf="releaseFiles.length">
+    <button mat-button color="primary" class="white-tr-text bg-purple" *ngIf="releaseFiles.length" (click)="release()">
       <mat-icon>file_upload</mat-icon>
       <span>Release</span>
     </button>

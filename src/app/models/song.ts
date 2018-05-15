@@ -11,6 +11,7 @@ export class Song {
     public artist: Artist
     public genre: string
     public magnet?: string = 'magnet:?xt=urn:btih:be6ba1051b5ac85e5ce112d27f384846f380ef21&dn=DO+YOU+KNOW+DA+WAE+(TRAP+REMIX).mp3&tr=http%3A%2F%2Flocalhost%3A3303&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com'
+    // public magnet?: string = 'magnet:?xt=urn:btih:5456a5735d56465ca6d9f0ba6af268e556916230&dn=3&tr=udp%3A%2F%2Flocalhost%3A3303'
 
     public static randomSong(): Song {
         const genres = ['Rock', 'Jazz', 'Metal', 'Pop', 'Blues']
@@ -30,6 +31,7 @@ export class Song {
 
 export class ReleaseFile extends Song {
     public fileUrl: string
+    public fileObject: File
     public priceUSD?: number
     public priceETH?: number
 }

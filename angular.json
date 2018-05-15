@@ -28,7 +28,8 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/webtorrent/webtorrent.min.js"
+              "node_modules/webtorrent/webtorrent.min.js",
+              "node_modules/file-api/index.js"
             ]
           },
           "configurations": {
