@@ -20,7 +20,6 @@ export class SeedService {
   private trackers: string[] = ['udp://localhost:3303']
 
   constructor(private _electronService: ElectronService) {
-    this.FileAPI = this._electronService.remote.require('file-api')
     this.fs = this._electronService.remote.require('fs')
     this.torrentClient = new WebTorrent()
   }
