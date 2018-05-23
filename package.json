@@ -34,7 +34,10 @@
     "ng2-dragula": "^1.5.0",
     "ngx-electron": "^1.0.4",
     "rxjs": "^6.0.0",
+    "shell-escape": "^0.2.0",
+    "shelljs": "^0.8.2",
     "webtorrent": "^0.99.4",
+    "webtorrent-hybrid": "^1.0.6",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

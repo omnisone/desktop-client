@@ -13,23 +13,26 @@ declare var WebTorrent: any
 })
 export class SeedService {
 
-  private FileAPI
-  private fs
-  private WebTorrent
-  private torrentClient
-  private trackers: string[] = ['udp://localhost:3303']
+  private shell
+  private path
 
   constructor(private _electronService: ElectronService) {
-    this.fs = this._electronService.remote.require('fs')
-    this.torrentClient = new WebTorrent()
+    this.shell = this._electronService.remote.require('shelljs')
+    this.path = this._electronService.remote.require('path')
   }
 
   public seedFile(song: ReleaseFile, callback: Function) {
     const self = this
-
-    self.torrentClient.seed(song.fileObject, (torrent) => {
-      console.log('seeding', torrent.infoHash)
-      callback(torrent.magnetURI)
+    const base64 = (new Buffer(song.fileObject.path)).toString('base64')
+    this.shell.exec('which node', (code, stdout, stderr) => {
+      console.log('node at', stdout)
+      self.shell.config.execPath = stdout
+      const scriptPath = self.path.join(__dirname, '../src/electron/', 'seed.sh')
+      self.shell.chmod('+x', scriptPath)
+      self.shell.exec(`${scriptPath} ${base64}`, (code, stdout, stderr) => {
+        console.log(stdout)
+      })
     })
+
   }
 }
