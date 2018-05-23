@@ -25,12 +25,13 @@ export class SeedService {
     const self = this
     const base64 = (new Buffer(song.fileObject.path)).toString('base64')
     this.shell.exec('which node', (code, stdout, stderr) => {
-      console.log('node at', stdout)
       self.shell.config.execPath = stdout
       const scriptPath = self.path.join(__dirname, '../src/electron/', 'seed.sh')
       self.shell.chmod('+x', scriptPath)
-      self.shell.exec(`${scriptPath} ${base64}`, (code, stdout, stderr) => {
-        console.log(stdout)
+      self.shell.exec(`${scriptPath} ${base64}`, { silent: true }, (code, stdout, stderr) => {
+        console.log('stdout', stdout)
+        const data = JSON.parse(stdout)
+        callback(data)
       })
     })
 

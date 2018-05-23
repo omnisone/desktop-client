@@ -98,7 +98,7 @@ export class ReleaseComponent implements OnInit {
 
   public release(): void {
     this.releaseFiles.forEach((song: ReleaseFile) => {
-      this._seedService.seedFile(song, (magnet: string) => console.log(magnet))
+      this._seedService.seedFile(song, (data: any) => console.log(data.magnetURI))
     })
   }
 

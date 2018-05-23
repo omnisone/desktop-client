@@ -12,6 +12,9 @@ fileBuf.name = filepath.split(' ').join('_')
 
 const trackers = ['http://localhost:3303']
 torrentClient.seed(fileBuf, { announceList: [trackers] }, function (torrent) {
-    console.log('seeding', torrent.infoHash)
-    console.log('seeding', torrent.magnetURI)
+    const output = {
+        infoHash: torrent.infoHash,
+        magnetURI: torrent.magnetURI
+    }
+    console.log(output)
 })
